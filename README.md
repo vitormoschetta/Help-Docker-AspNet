@@ -36,8 +36,12 @@ Obs: **container-netcore** é o nome dado ao container criado.
      **prod-netcore** é a referência da imagem utilizada para criar o container.
 
 
-Você possivelmente conseguirá acessar a aplicação na seguinte url:
-http://localhost:8080
+Você possivelmente conseguirá acessar a aplicação na seguinte url:  
+http://localhost:8080  
+
+Também é possível acessar pelo IP do seu computador:  
+
+IPV4:8080
 
 
 ---
