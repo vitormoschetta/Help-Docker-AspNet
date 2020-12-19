@@ -26,14 +26,14 @@ dotnet publish -c Release
 ```
 docker build -t netcore-dll .
 ```
-Obs: <netcore-dll> é o nome dado a imagem criada.
+Obs: **netcore-dll** é o nome dado a imagem criada.
 
 #### Publicar um Container local executando a aplicação:
 ```
 docker run -d -p 8080:80 --name container-netcore netcore-dll
 ```
-Obs: <container-netcore> é o nome dado ao container criado.
-     <netcore-dll> é a referência da imagem utilizada para criar o container.
+Obs: **container-netcore** é o nome dado ao container criado.
+     **netcore-dll** é a referência da imagem utilizada para criar o container.
 
 
 Você possivelmente conseguirá acessar a aplicação na seguinte url:
