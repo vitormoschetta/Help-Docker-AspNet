@@ -150,6 +150,64 @@ Obs: **vithor-netcore** é o nome do app hospedado no Heroku
 heroku container:release web -a vithor-netcore
 ```
 
+---
 
+
+
+# Metodo 04 (Desenvolvimento Com Camadas - DDD):
+
+### Considerando a seguinte estrutura de arquivos:
+```
+Dockerfile
+Domain
+Infra
+Api
+```
+
+### O arquivo Dockerfile:
+```
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+
+COPY *.sln App/
+COPY Domain/*.csproj App/Domain/
+COPY Infra/*.csproj App/Infra/
+COPY Tests/*.csproj App/Tests/
+COPY Api/*.csproj App/Api/
+
+WORKDIR /App
+RUN dotnet restore
+
+COPY Api/. ./Api/
+COPY Domain/. ./Domain/
+COPY Infra/. ./Infra/
+COPY Tests/. ./Tests/
+
+WORKDIR /App/Api
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
+WORKDIR /App
+COPY --from=build /App/Api/out ./
+
+ENTRYPOINT ["dotnet", "api.dll"]
+```
+
+### Criar Imagem:
+```
+docker build -t api-dev .
+```
+Obs: **api-dev** é o nome dado a imagem criada.
+
+### Publicar um Container local executando a aplicação:
+```
+docker run -d -p 8080:80 --name container-api api-dev
+```
+Obs: **container-api** é o nome dado ao container criado.  
+     **api-dev** é a referência da imagem utilizada para criar o container.
+
+Obs2: Estamos levando em consideração que não há acesso à nenhuma Base de Dados. Apenas dados em Memória.
+
+
+---
 
 
