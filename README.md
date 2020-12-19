@@ -76,7 +76,7 @@ Obs: Pode acontecer de no seu projeto existirem nomes conflitantes, e você rece
 _Could not copy the 
 file "/App/obj/Release/netcoreapp3.1/Projeto" to the destination file "bin/Release/netcoreapp3.1/Projeto", because the destination is a folder instead of a file. To copy the source file into a folder, consider using the DestinationFolder parameter instead of DestinationFiles. [/App/Projeto.csproj]_
 
-Se isso acontecer, apenas mude o nome da pasta e do .csproj de 'Projeto' para 'src' por exemplo.
+Se isso acontecer, apenas mude o nome da pasta e do .csproj de '**Projeto**' para '**src**' por exemplo.
 
 
 ### Criar Imagem:
