@@ -106,6 +106,50 @@ Obs2: Isso certamente deixará a execução do container mais lento.
 ---
 
 
+# Metodo 03 (Produção Heroku):
+
+Considerando a mesma estrutura dos exemplos anteriores.
+
+### O arquivo Dockerfile:
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+COPY Projeto/bin/Release/netcoreapp3.1/publish/ App/
+WORKDIR /App
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Projeto.dll
+```
+
+### Publicar as dll:
+```
+dotnet publish -c Release
+```
+
+### Criar Imagem:
+```
+docker build -t netcore-prod-heroku .
+```
+
+### Login no heroku (Necessário ter o Heroku CLI instalado):
+```
+heroku login
+```
+Obs: Uma página web será aberta pra efetuar o login
+
+### Login no Container do Heroku:
+```
+heroku container:login
+```
+
+### Enviar imagem ao Heroku Container:
+```
+heroku container:push web -a vithor-netcore
+```
+Obs: **vithor-netcore** é o nome do app hospedado no Heroku
+
+### Liberar execução do Container:
+```
+heroku container:release web -a vithor-netcore
+```
+
 
 
 
