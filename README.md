@@ -42,6 +42,6 @@ http://localhost:8080
 
 
 
-# Metodo 01 (Desenvolvimento) - Montar imagem docker com o SDK NET Core:
+# Metodo 02 (Desenvolvimento) - Montar imagem docker com o SDK NET Core:
 
 
