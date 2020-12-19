@@ -38,3 +38,10 @@ Obs: **container-netcore** é o nome dado ao container criado.
 
 Você possivelmente conseguirá acessar a aplicação na seguinte url:
 http://localhost:8080
+
+
+
+
+# Metodo 01 (Desenvolvimento) - Montar imagem docker com o SDK NET Core:
+
+
