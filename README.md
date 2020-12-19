@@ -212,3 +212,40 @@ Obs2: Estamos levando em consideração que não há acesso à nenhuma Base de D
 ---
 
 
+# Metodo 05 (Desenvolvimento Com Camadas - DDD): Publicar API no Heroku
+
+### Considerando a seguinte estrutura de arquivos:
+```
+Dockerfile
+Domain
+Infra
+Api
+Tests
+```
+
+### O arquivo Dockerfile:
+
+É o mesmo do exemplo anterior, necessário modificar apenas a última linha.  
+Substituir essa linha:
+```
+ENTRYPOINT ["dotnet", "api.dll"]
+```
+
+Por essa:
+```
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet api.dll
+```
+
+### Criar Imagem:
+```
+docker build -t api-heroku .
+```
+
+### Publicar um Container local executando a aplicação:
+```
+docker run -d -p 8080:80 --name container-api api-heroku
+```
+
+Obs2: Estamos levando em consideração que não há acesso à nenhuma Base de Dados. Apenas dados em Memória. No nosso caso o Entity Framework InMomeroy.
+
+
