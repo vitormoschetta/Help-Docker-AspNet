@@ -162,6 +162,7 @@ Dockerfile
 Domain
 Infra
 Api
+Tests
 ```
 
 ### O arquivo Dockerfile:
