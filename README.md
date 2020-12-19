@@ -32,7 +32,7 @@ Obs: **netcore-dll** é o nome dado a imagem criada.
 ```
 docker run -d -p 8080:80 --name container-netcore netcore-dll
 ```
-Obs: **container-netcore** é o nome dado ao container criado.
+Obs: **container-netcore** é o nome dado ao container criado.  
      **netcore-dll** é a referência da imagem utilizada para criar o container.
 
 
