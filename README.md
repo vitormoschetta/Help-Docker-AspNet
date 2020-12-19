@@ -13,7 +13,7 @@ Projeto/
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 COPY Projeto/bin/Release/netcoreapp3.1/publish/ App/
 WORKDIR /App
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+ENTRYPOINT ["dotnet", "Projeto.dll"]
 ```
 
 #### Publicar as dll fora da imagem primeiro:
