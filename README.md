@@ -40,7 +40,7 @@ Você possivelmente conseguirá acessar a aplicação na seguinte url:
 http://localhost:8080
 
 
-
+---
 
 # Metodo 02 (Desenvolvimento) - Montar imagem docker com o SDK NET Core:
 
