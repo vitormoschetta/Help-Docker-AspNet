@@ -51,7 +51,54 @@ IPV4:8080
 
 
 
-# Metodo 02 (Produção Heroku): 
+# Metodo 02 (Produção Azure): 
+
+Considerando a mesma estrutura do exemplo anterior.
+
+### O arquivo Dockerfile:
+É o mesmo do exemplo anterior
+
+### Publicar as dll:
+```
+dotnet publish -c Release
+```
+
+### Criar Imagem:
+```
+docker build -t netcore-prod-azure .
+```
+
+### Criar Registro de Contêiner do Azure:  
+[Tutorial](https://docs.microsoft.com/pt-br/learn/modules/deploy-run-container-app-service/3-exercise-build-images?pivots=csharp)
+
+Obs: Necessário ter uma assinatura no Azure. 
+
+### Login no Azure (Necessário ter o Azure CLI instalado):
+```
+az login
+```
+Obs: Uma página web será aberta pra efetuar o login
+
+### Enviar imagem ao Registro de Contêiner do Azure:  
+```
+az acr build --registry container-netcore --image netcore-prod-azure .
+```
+Obs: **container-netcore** é o nome do registro de container criado pelo usuário que possui assinatura no Azure.  
+**netcore-prod-azure** é o nome da imagem que geramos anteriormente.  
+
+### Criar Aplicativo baseado em Container do Azure
+Seguir tutorial:
+[Tutorial](https://docs.microsoft.com/pt-br/learn/modules/deploy-run-container-app-service/5-exercise-deploy-web-app?pivots=csharp)
+
+
+
+
+---
+
+
+
+
+# Metodo 03 (Produção Heroku): 
 
 Considerando a mesma estrutura do exemplo anterior.
 
@@ -104,7 +151,7 @@ heroku container:release web -a vithor-netcore
 
 
 
-# Metodo 03 (Desenvolvimento Local) - Montar imagem docker com o SDK NET Core:
+# Metodo 04 (Desenvolvimento Local) - Montar imagem docker com o SDK NET Core:
 
 ### Considerando a mesma estrutura de arquivos dos exemplos anteriores.
 
@@ -164,7 +211,7 @@ Obs2: Isso certamente deixará a execução do container mais lento.
 
 
 
-# Metodo 04 (Desenvolvimento Local COM CAMADAS - DDD Backend):
+# Metodo 05 (Desenvolvimento Local COM CAMADAS - DDD Backend):
 
 ### Considerando a seguinte estrutura de arquivos:
 ```
@@ -219,37 +266,4 @@ Obs: Estamos levando em consideração que não há acesso à nenhuma Base de Da
 
 
 ---
-
-
-
-
-# Metodo 05 (Desenvolvimento Com Camadas - DDD): Publicar API no Heroku
-
-Considerando a mesma estrutura de pastas do exemplo anterior.
-
-### O arquivo Dockerfile:
-
-É o mesmo do exemplo anterior, necessário modificar apenas a última linha.  
-Substituir essa linha:
-```
-ENTRYPOINT ["dotnet", "api.dll"]
-```
-
-Por essa:
-```
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet api.dll
-```
-
-### Criar Imagem:
-```
-docker build -t api-dev-heroku .
-```
-
-### Publicar um Container local executando a aplicação:
-```
-docker run -d -p 8080:80 --name container-api api-dev-heroku
-```
-
-Obs2: Estamos levando em consideração que não há acesso à nenhuma Base de Dados. Apenas dados em Memória. No nosso caso o Entity Framework InMomeroy.
-
 
