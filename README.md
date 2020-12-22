@@ -267,3 +267,42 @@ Obs: Estamos levando em consideração que não há acesso à nenhuma Base de Da
 
 ---
 
+
+
+
+
+# Metodo 06 (Produção COM CAMADAS - DDD Backend):
+
+### Considerando a seguinte estrutura de arquivos:
+```
+Dockerfile
+Domain
+Infra
+Api
+Tests
+```
+
+### O arquivo Dockerfile:
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+COPY Api/bin/Release/netcoreapp3.1/publish/ App/src/
+WORKDIR /App/src/
+ENTRYPOINT ["dotnet", "api.dll"]
+```
+
+### Criar Imagem:
+```
+docker build -t api-prod .
+```
+
+### Publicar um Container local executando a aplicação:
+```
+docker run -d -p 8080:80 --name container-api-prod api-prod
+```
+
+
+
+
+---
+
+
