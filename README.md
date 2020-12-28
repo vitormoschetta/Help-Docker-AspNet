@@ -289,6 +289,12 @@ COPY Api/bin/Release/netcoreapp3.1/publish/ App/src/
 WORKDIR /App/src/
 ENTRYPOINT ["dotnet", "api.dll"]
 ```
+
+### Publicar dll
+Dentro da pasta Api executar:
+```
+dotnet publish -c Release
+```
 Obs: Todas as _dll_ vão para a pasta da **API**. Por isso só precisamos pegar os arquivos da Api.
 
 ### Criar Imagem:
